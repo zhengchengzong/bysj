@@ -35,33 +35,33 @@ background-color 背景颜色 -->
       <el-menu-item index="/labsmanage/labsmodify">查询实验室</el-menu-item>
     </el-menu-item-group>
   </el-submenu>
-  <el-submenu index="3">
+  <el-submenu index="/equipmentmanagement">
     <template slot="title">
       <i class="el-icon-location"></i>
       <span slot="title">实验室设备管理</span>
     </template>
     <el-menu-item-group>
-      <el-menu-item index="3-1">设备入库</el-menu-item>
-      <el-menu-item index="3-2">设备出库</el-menu-item>
-      <el-menu-item index="3-3">设备信息修改</el-menu-item>
-      <el-menu-item index="3-4">设备维护记录</el-menu-item>
-      <el-menu-item index="3-5">设备报修记录</el-menu-item>
-      <el-menu-item index="3-6">设备查询</el-menu-item>
+      <el-menu-item index="/equipmentmanagement/addequipment">设备入库</el-menu-item>
+      <el-menu-item index="/equipmentmanagement/deleteequipment">设备出库</el-menu-item>
+      <el-menu-item index="/equipmentmanagement/modifyequipment">设备信息修改</el-menu-item>
+      <el-menu-item index="/equipmentmanagement/maintenanceequipment">设备维护记录</el-menu-item>
+      <el-menu-item index="/equipmentmanagement/repairequipment">设备报修记录</el-menu-item>
+      <el-menu-item index="/equipmentmanagement/queryequipment">设备查询</el-menu-item>
     </el-menu-item-group>
   </el-submenu>
-  <el-submenu index="4">
+  <el-submenu index="/users">
     <template slot="title">
       <i class="el-icon-document"></i>
       <span slot="title">用户管理</span>
     </template>
     <el-menu-item-group>
-      <el-menu-item index="4-1">本用户管理</el-menu-item>
-      <el-submenu index="4-2">
+      <el-menu-item index="/users/myselfmanagement">本用户管理</el-menu-item>
+      <el-submenu index="/users/othersmanagement">
           <template slot="title">其它用户管理</template>
-          <el-menu-item index="4-2-1">添加管理员</el-menu-item>
-          <el-menu-item index="4-2-2">删除管理员</el-menu-item>
-          <el-menu-item index="4-2-3">修改管理员信息</el-menu-item>
-          <el-menu-item index="4-2-4">查询管理员</el-menu-item>
+          <el-menu-item index="/users/othersmanagement/addusers">添加管理员</el-menu-item>
+          <el-menu-item index="/users/othersmanagement/deleteusers">删除管理员</el-menu-item>
+          <el-menu-item index="/users/othersmanagement/modifyusers">修改管理员信息</el-menu-item>
+          <el-menu-item index="/users/othersmanagement/queryusers">查询管理员</el-menu-item>
         </el-submenu>
     </el-menu-item-group>
   </el-submenu>
