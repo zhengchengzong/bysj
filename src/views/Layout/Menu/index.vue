@@ -3,11 +3,12 @@
 default-active 默认打开的选中导航
 text-color     文字颜色
 active-text-color 高亮文字颜色
-background-color 背景颜色 -->
+background-color 背景颜色 
+collapse 是否水平折叠收起菜单-->
  <el-menu router default-active="/" class="el-menu-vertical-demo" 
  background-color="#112f50"
   text-color="#fff"
-  active-text-color="#ffd04b">
+  active-text-color="#ffd04b" :collapse="isCollapse">
   <!-- <el-submenu index="1">
     <template slot="title">
       <i class="el-icon-location"></i>
@@ -70,7 +71,7 @@ background-color 背景颜色 -->
 
 <script>
 export default {
-
+    props:['isCollapse']
 }
 </script>
 
@@ -78,5 +79,8 @@ export default {
  .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
+  }
+  .el-menu{
+    border-right:none;
   }
 </style>
