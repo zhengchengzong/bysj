@@ -27,7 +27,7 @@ collapse 是否水平折叠收起菜单-->
       </el-menu-item>
   <el-submenu index="/labsmanage">
      <template slot="title">
-      <i class="el-icon-menu"></i>
+      <i class="el-icon-setting"></i>
       <span slot="title">实验室信息管理</span>
     </template>
     <el-menu-item-group>
