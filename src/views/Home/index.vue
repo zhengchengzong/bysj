@@ -17,8 +17,8 @@
         <el-card style="margin-top:20px;height:460px;">
           <el-table
                 :data="tableData"
-                style="width: 100%"
-                height="250">
+                style="width: 100%;"
+                height="450">
                 <el-table-column
                 v-for="(val,key) in tableLabel"
                   fixed
@@ -26,35 +26,34 @@
                   :label="val"
                   :key="key">
                 </el-table-column>
-                <!-- <el-table-column
-                  prop="name"
-                  label="姓名"
-                  >
-                </el-table-column>
-                <el-table-column
-                  prop="province"
-                  label="省份"
-                  >
-                </el-table-column>
-                <el-table-column
-                  prop="city"
-                  label="市区"
-                  >
-                </el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="地址"
-                  >
-                </el-table-column>
-                <el-table-column
-                  prop="zip"
-                  label="邮编"
-                  >
-                </el-table-column> -->
               </el-table>
         </el-card>
       </el-col>
-      <el-col :span="16"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="16">
+        <div class="num">
+           <el-card :body-style="{display:'flex'}">
+            <i class="icon el-icon-success" style="background:#5ab1ef;"></i>
+            <div class="detail">
+              <p class="price">￥{{countDate.all_assets}}</p>
+              <p class="desc">未使用总资产</p>
+            </div>
+            </el-card>
+            <el-card :body-style="{display:'flex'}">
+            <i class="icon el-icon-s-order" style="background:#2ec7c9;"></i>
+            <div class="detail">
+              <p class="price">￥{{countDate.use_assets}}</p>
+              <p class="desc">已使用资产</p>
+            </div>
+            </el-card>
+            <el-card :body-style="{display:'flex'}">
+            <i class="icon el-icon-star-on" style="background:#ffb980;" ></i>
+            <div class="detail">
+              <p class="price">￥{{countDate.surplus_assets}}</p>
+              <p class="desc">剩余总资产</p>
+            </div>
+            </el-card>
+        </div>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -66,27 +65,74 @@ export default {
       tableData: [{
           date: '2016-05-03',
           name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
+          gender:"男",
+          authority: '一般管理员',
+          jobid: '001',
+          phonenumber:15766262626
         }, {
           date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
+          name: '刘小千',
+          gender:"女",
+          authority: '一般管理员',
+          jobid: '002',
+          phonenumber:15766262626
         }, {
           date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
+          name: '刘大千',
+          gender:"女",
+          authority: '一般管理员',
+          jobid: '003',
+          phonenumber:15766262626
+          
+        },{
+          date: '2016-05-04',
+          name: '刘大千',
+          gender:"女",
+          authority: '一般管理员',
+          jobid: '003',
+          phonenumber:15766262626
+          
+        },{
+          date: '2016-05-04',
+          name: '刘大千',
+          gender:"女",
+          authority: '一般管理员',
+          jobid: '003',
+          phonenumber:15766262626
+          
+        }
+        ,{
+          date: '2016-05-04',
+          name: '刘大千',
+          gender:"女",
+          authority: '一般管理员',
+          jobid: '003',
+          phonenumber:15766262626
+          
+        },{
+          date: '2016-05-04',
+          name: '刘大千',
+          gender:"女",
+          authority: '一般管理员',
+          jobid: '003',
+          phonenumber:15766262626
+          
+        },{
+          date: '2016-05-04',
+          name: '刘大千',
+          gender:"女",
+          authority: '一般管理员',
+          jobid: '011',
+          phonenumber:15766262626
+          
         }],
         tableLabel:{
-          date:"日期",name:"姓名",province:"省份",city:"市区",address:"地址",zip:"邮编"
+          jobid:"工号",date:"日期",name:"姓名",gender:"性别",authority:"权限",phonenumber:"手机号"
+        },
+        countDate:{
+              all_assets:10000,
+              use_assets:500,
+              surplus_assets:9500
         }
     }
   }
@@ -123,5 +169,46 @@ export default {
 .login-info p span{
   color: #666666;
   margin-left: 60px;
+}
+.num{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.home .num .el-card{
+  width: 32%;
+  margin-bottom: 20px;
+}
+.num .icon{
+  width: 80px;
+  height: 80px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 80px;
+  color: #fff;
+}
+.detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+}
+.detail .price{
+  font-size: 30px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 30px;
+  height: 30px;
+  padding-right: 80px;
+}
+.detail .desc{
+  font-size:14px;
+  color: #999;
+  text-align: center;
+  margin-top: 23px;
+  margin-bottom: 0;
+  padding-right: 80px;
+
 }
 </style>
