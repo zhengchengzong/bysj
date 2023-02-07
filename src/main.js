@@ -6,6 +6,7 @@ import store from './store'
 import './plugins/element'
 import './assets/css/reset.css'
 import './assets/css/iconfont.css'
+import './api/mock'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)

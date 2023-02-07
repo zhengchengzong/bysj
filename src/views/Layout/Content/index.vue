@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 顶部区域 -->
-    <div class="header">
+    <div class="header tesu1">
       <div class="icon">
          <i v-if="!isCollapse" @click="changemenu" class="iconfont icon-indentdecrease"></i>
          <i v-if="isCollapse" @click="changemenu" class="iconfont icon-indentincrease"></i>
@@ -30,9 +30,9 @@ export default {
     }
   },
   methods:{
-  changemenu(){
-    this.$emit("changeMenu")
-  }
+      changemenu(){
+        this.$emit("changeMenu")
+      }
 },created(){
   setInterval(()=>{
     this.nowTime=dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
@@ -67,5 +67,10 @@ export default {
 }
 .exit i{
   font-size: 18px;
+}
+.tesu1{
+  position:relative;
+  top: -8px;
+  left: -6px;
 }
 </style>

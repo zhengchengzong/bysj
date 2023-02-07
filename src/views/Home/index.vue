@@ -14,11 +14,11 @@
             <p>工号: <span>112133</span></p>
            </div>
         </el-card>
-        <el-card style="margin-top:20px;height:460px;">
+        <el-card style="margin-top:20px;height:530px;">
           <el-table
                 :data="tableData"
                 style="width: 100%;"
-                height="450">
+                height="520">
                 <el-table-column
                 v-for="(val,key) in tableLabel"
                   fixed
@@ -53,79 +53,24 @@
             </div>
             </el-card>
         </div>
+       <el-card style="height:280px;margin-left:29px;margin-top: 18px;">
+
+       </el-card>
+       <div class="tuxiang" style="margin-left:29px;margin-top:18px">
+          <el-card style="height:380px;width:67%;margin-right:5px"></el-card>
+          <el-card style="height:380px;width:33%"></el-card>
+       </div>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import {getData} from '@/api/index'
 export default {
   data(){
     return {
-      tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          gender:"男",
-          authority: '一般管理员',
-          jobid: '001',
-          phonenumber:15766262626
-        }, {
-          date: '2016-05-02',
-          name: '刘小千',
-          gender:"女",
-          authority: '一般管理员',
-          jobid: '002',
-          phonenumber:15766262626
-        }, {
-          date: '2016-05-04',
-          name: '刘大千',
-          gender:"女",
-          authority: '一般管理员',
-          jobid: '003',
-          phonenumber:15766262626
-          
-        },{
-          date: '2016-05-04',
-          name: '刘大千',
-          gender:"女",
-          authority: '一般管理员',
-          jobid: '003',
-          phonenumber:15766262626
-          
-        },{
-          date: '2016-05-04',
-          name: '刘大千',
-          gender:"女",
-          authority: '一般管理员',
-          jobid: '003',
-          phonenumber:15766262626
-          
-        }
-        ,{
-          date: '2016-05-04',
-          name: '刘大千',
-          gender:"女",
-          authority: '一般管理员',
-          jobid: '003',
-          phonenumber:15766262626
-          
-        },{
-          date: '2016-05-04',
-          name: '刘大千',
-          gender:"女",
-          authority: '一般管理员',
-          jobid: '003',
-          phonenumber:15766262626
-          
-        },{
-          date: '2016-05-04',
-          name: '刘大千',
-          gender:"女",
-          authority: '一般管理员',
-          jobid: '011',
-          phonenumber:15766262626
-          
-        }],
+      tableData:[],
         tableLabel:{
           jobid:"工号",date:"日期",name:"姓名",gender:"性别",authority:"权限",phonenumber:"手机号"
         },
@@ -135,6 +80,11 @@ export default {
               surplus_assets:9500
         }
     }
+  },mounted(){
+         getData().then(({data})=>{
+          
+          this.tableData=data.data.tableData
+         })
   }
 
 }
@@ -209,6 +159,9 @@ export default {
   margin-top: 23px;
   margin-bottom: 0;
   padding-right: 80px;
-
+}
+.tuxiang{
+  display: flex;
+  justify-content: space-between;
 }
 </style>
