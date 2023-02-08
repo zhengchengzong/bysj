@@ -22,28 +22,16 @@ export default {
             data: {
                 // 饼图
                 videoData: [{
-                        name: '小米',
-                        value: 2999
+                        name: '正常使用',
+                        value: 10
                     },
                     {
-                        name: '苹果',
-                        value: 5999
+                        name: '维护中',
+                        value: 3
                     },
                     {
-                        name: 'vivo',
-                        value: 1500
-                    },
-                    {
-                        name: 'oppo',
-                        value: 1999
-                    },
-                    {
-                        name: '魅族',
-                        value: 2200
-                    },
-                    {
-                        name: '三星',
-                        value: 4500
+                        name: '报修',
+                        value: 2
                     }
                 ],
                 // 柱状图
@@ -150,7 +138,23 @@ export default {
                     jobid: '011',
                     phonenumber: 15766262626
 
-                }]
+                }],
+                tableData2: [{ id: 10001, name: "计算机实验室", manager: "011", personnelcapacity: 30, geography: "南区51栋#102" },
+                    { id: 10001, name: "计算机实验室", manager: "011", personnelcapacity: 30, geography: "南区51栋#102" }, { id: 10001, name: "计算机实验室", manager: "011", personnelcapacity: 30, geography: "南区51栋#102" }, { id: 10001, name: "计算机实验室", manager: "011", personnelcapacity: 30, geography: "南区51栋#102" }, { id: 10001, name: "计算机实验室", manager: "011", personnelcapacity: 30, geography: "南区51栋#102" },
+
+                ],
+                countDate: {
+                    all_assets: 10000,
+                    use_assets: 500,
+                    surplus_assets: 9500
+                },
+                equipmentdata: [{ id: "001", name: "3D建模设备", addtime: "2019-2-3", status: "正常", laboratoryid: 10001, money: "￥36800" },
+                    { id: "002", name: "3D建模设备", addtime: "2019-2-3", status: "正常", laboratoryid: 10001, money: "￥36800" },
+                    { id: "005", name: "3D建模设备", addtime: "2019-2-3", status: "维护中", laboratoryid: 10001, money: "￥36800" },
+                    { id: "003", name: "3D建模设备", addtime: "2019-2-3", status: "报修中", laboratoryid: 10003, money: "￥36800" },
+                    { id: "003", name: "3D建模设备", addtime: "2019-2-3", status: "正常", laboratoryid: 10003, money: "￥36800" }, { id: "003", name: "3D建模设备", addtime: "2019-2-3", status: "正常", laboratoryid: 10003, money: "￥36800" }, { id: "003", name: "3D建模设备", addtime: "2019-2-3", status: "正常", laboratoryid: 10003, money: "￥36800" }, { id: "003", name: "3D建模设备", addtime: "2019-2-3", status: "正常", laboratoryid: 10003, money: "￥36800" }, { id: "010", name: "3D建模设备", addtime: "2019-2-3", status: "正常", laboratoryid: 10003, money: "￥36800" }
+
+                ]
             }
         }
     }

@@ -54,11 +54,40 @@
             </el-card>
         </div>
        <el-card style="height:280px;margin-left:29px;margin-top: 18px;">
-
+                  <el-table
+                              :data="tableData2"
+                              style="width: 100%"
+                              height="250">
+                              <el-table-column
+                              v-for="(val,key) in tableLabel2"
+                              :key="key"
+                                fixed
+                                :prop="key"
+                                :label="val">
+                                
+                              </el-table-column>
+                </el-table>
        </el-card>
        <div class="tuxiang" style="margin-left:29px;margin-top:18px">
-          <el-card style="height:380px;width:67%;margin-right:5px"></el-card>
-          <el-card style="height:380px;width:33%"></el-card>
+          <el-card style="height:380px;width:67%;margin-right:5px">
+                      <el-table
+                              :data="equipmentdata"
+                              style="width: 100%"
+                              height="360">
+                              <el-table-column
+                               v-for="(val,key) in tableLabel3"
+                              :key="key"
+                                fixed
+                                :prop="key"
+                                :label="val"
+                                >
+                              </el-table-column>
+            
+                            </el-table>
+          </el-card>
+          <el-card style="height:380px;width:33%">
+                <div ref="echarts1" style="height:230px" class="piechart"></div>
+          </el-card>
        </div>
       </el-col>
     </el-row>
@@ -67,25 +96,78 @@
 
 <script>
 import {getData} from '@/api/index'
+import * as echarts from 'echarts';
 export default {
   data(){
     return {
       tableData:[],
+      tableData2:[],
+        countDate:{
+        },
+        equipmentdata:[]
+        ,
         tableLabel:{
           jobid:"工号",date:"日期",name:"姓名",gender:"性别",authority:"权限",phonenumber:"手机号"
         },
-        countDate:{
-              all_assets:10000,
-              use_assets:500,
-              surplus_assets:9500
-        }
+        tableLabel2:{
+          id:"实验室编号",name:"实验室名字",manager:"实验室管理员ID",personnelcapacity:"实验室人员容量",geography:"地理位置"
+        },
+        tableLabel3:{id:"设备编号",name:"设备名称",addtime:"入库时间",status:"设备状态",laboratoryid:"所在实验室编号",money:"设备金额"}
+       
     }
   },mounted(){
          getData().then(({data})=>{
-          
           this.tableData=data.data.tableData
-         })
-  }
+          this.tableData2=data.data.tableData2
+          this.countDate=data.data.countDate
+          this.equipmentdata=data.data.equipmentdata
+
+
+
+          //饼转图
+         const echarts1=echarts.init(this.$refs.echarts1)
+         const echarts1Option={
+          title:{text:"设备状态分布图",x:"center",y:"top",itemGap:30,
+          textStyle: {
+              fontSize: 26,
+              fontWeight: 'bolder',
+              
+            },subtextStyle: {
+              fontSize: 18,
+              color: '#8B2323'
+            }
+},legend:{orient: 'vertical',x: 'left',y: 'center',itemWidth: 24,itemHeight: 18,
+            textStyle: {
+              color: '#666'  // 图例文字颜色
+            },itemGap: 30,
+           
+            data: ['正常使用','维护中','报修']},
+          tooltip:{
+                  trigger:"item"
+         },
+         color:["#0f78f4",
+                    "#dd536b",
+                    "#9462e5",
+                    "#a6a6a6",
+                    "#e1bb22",
+                    "#39c362",
+                    "#3ed1cf",],
+         series:[{
+          data:data.data.videoData,
+          type:'pie',
+          label:{
+          normal:{
+            position:'inner',
+            formatter:"{c}"
+          }
+         }
+         }]
+         }
+         echarts1.setOption(echarts1Option)
+         });
+         
+  },
+  
 
 }
 </script>
@@ -163,5 +245,10 @@ export default {
 .tuxiang{
   display: flex;
   justify-content: space-between;
+}
+.piechart{
+  position: relative;
+  top: 25px;
+  left: 12px;
 }
 </style>
