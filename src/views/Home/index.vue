@@ -107,7 +107,7 @@ export default {
         equipmentdata:[]
         ,
         tableLabel:{
-          jobid:"工号",date:"日期",name:"姓名",gender:"性别",authority:"权限",phonenumber:"手机号"
+          id:"工号",date:"日期",name:"姓名",gender:"性别",grade:"权限",phonenumber:"手机号"
         },
         tableLabel2:{
           id:"实验室编号",name:"实验室名字",manager:"实验室管理员ID",personnelcapacity:"实验室人员容量",geography:"地理位置"
@@ -129,7 +129,7 @@ export default {
          const echarts1Option={
           title:{text:"设备状态分布图",x:"center",y:"top",itemGap:30,
           textStyle: {
-              fontSize: 26,
+              fontSize: 16,
               fontWeight: 'bolder',
               
             },subtextStyle: {

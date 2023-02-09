@@ -80,62 +80,62 @@ export default {
                     date: '2016-05-03',
                     name: '王小虎',
                     gender: "男",
-                    authority: '一般管理员',
-                    jobid: '001',
+                    grade: '一般管理员',
+                    id: '001',
                     phonenumber: 15766262626
                 }, {
                     date: '2016-05-02',
                     name: '刘小千',
                     gender: "女",
-                    authority: '一般管理员',
-                    jobid: '002',
+                    grade: '一般管理员',
+                    id: '002',
                     phonenumber: 15766262626
                 }, {
                     date: '2016-05-04',
                     name: '刘大千',
                     gender: "女",
-                    authority: '一般管理员',
-                    jobid: '003',
-                    phonenumber: 15766262626
-
-                }, {
-                    date: '2016-05-04',
-                    name: '刘大千',
-                    gender: "女",
-                    authority: '一般管理员',
-                    jobid: '003',
+                    grade: '一般管理员',
+                    id: '003',
                     phonenumber: 15766262626
 
                 }, {
                     date: '2016-05-04',
                     name: '刘大千',
                     gender: "女",
-                    authority: '一般管理员',
-                    jobid: '003',
+                    grade: '一般管理员',
+                    id: '003',
                     phonenumber: 15766262626
 
                 }, {
                     date: '2016-05-04',
                     name: '刘大千',
                     gender: "女",
-                    authority: '一般管理员',
-                    jobid: '003',
+                    grade: '一般管理员',
+                    id: '003',
                     phonenumber: 15766262626
 
                 }, {
                     date: '2016-05-04',
                     name: '刘大千',
                     gender: "女",
-                    authority: '一般管理员',
-                    jobid: '003',
+                    grade: '一般管理员',
+                    id: '003',
                     phonenumber: 15766262626
 
                 }, {
                     date: '2016-05-04',
                     name: '刘大千',
                     gender: "女",
-                    authority: '一般管理员',
-                    jobid: '011',
+                    grade: '一般管理员',
+                    id: '003',
+                    phonenumber: 15766262626
+
+                }, {
+                    date: '2016-05-04',
+                    name: '刘大千',
+                    gender: "女",
+                    grade: '一般管理员',
+                    id: '011',
                     phonenumber: 15766262626
 
                 }],

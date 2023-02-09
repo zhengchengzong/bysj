@@ -1,5 +1,5 @@
 <template>
-  <h2>查询其它管理员</h2>
+  <h1>查询管理员</h1>
 </template>
 
 <script>

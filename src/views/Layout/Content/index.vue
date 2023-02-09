@@ -5,7 +5,9 @@
       <div class="icon">
          <i v-if="!isCollapse" @click="changemenu" class="iconfont icon-indentdecrease"></i>
          <i v-if="isCollapse" @click="changemenu" class="iconfont icon-indentincrease"></i>
+          
       </div>
+      
       <div class="header-right">
         <span>{{nowTime}}</span>
         <span class="linestyle">|</span>

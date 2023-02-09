@@ -69,12 +69,12 @@ const router = new VueRouter({
                         path: 'othersmanagement',
                         name: 'othersmanagement',
                         component: OthersManagement,
-                        children: [
-                            { path: 'addusers', name: 'addusers', component: AddUsers },
-                            { path: 'deleteusers', name: 'deleteusers', component: DeleteUsers },
-                            { path: 'modifyusers', name: 'modifyusers', component: ModifyUsers },
-                            { path: 'queryusers', name: 'queryusers', component: QueryUsers }
-                        ]
+                        // children: [
+                        //     { path: 'addusers', name: 'addusers', component: AddUsers },
+                        //     { path: 'deleteusers', name: 'deleteusers', component: DeleteUsers },
+                        //     { path: 'modifyusers', name: 'modifyusers', component: ModifyUsers },
+                        //     { path: 'queryusers', name: 'queryusers', component: QueryUsers }
+                        // ]
                     }
                 ]
 

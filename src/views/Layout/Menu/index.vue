@@ -57,13 +57,15 @@ collapse 是否水平折叠收起菜单-->
     </template>
     <el-menu-item-group>
       <el-menu-item index="/users/myselfmanagement">本用户管理</el-menu-item>
-      <el-submenu index="/users/othersmanagement">
+      <el-menu-item index="/users/othersmanagement">一般用户管理</el-menu-item>
+
+      <!-- <el-submenu index="/users/othersmanagement">
           <template slot="title">其它用户管理</template>
           <el-menu-item index="/users/othersmanagement/addusers">添加管理员</el-menu-item>
           <el-menu-item index="/users/othersmanagement/deleteusers">删除管理员</el-menu-item>
           <el-menu-item index="/users/othersmanagement/modifyusers">修改管理员信息</el-menu-item>
           <el-menu-item index="/users/othersmanagement/queryusers">查询管理员</el-menu-item>
-        </el-submenu>
+        </el-submenu> -->
     </el-menu-item-group>
   </el-submenu>
 </el-menu>
