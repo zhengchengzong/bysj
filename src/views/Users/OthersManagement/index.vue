@@ -43,18 +43,14 @@
                   </el-select>
                   </el-form-item>
                 </el-form>
-                  
-                  
-
-
                   <span slot="footer" class="dialog-footer">
                     <el-button @click="cancle">取 消</el-button>
                     <el-button type="primary" @click="submit">确 定</el-button>
                   </span>
         </el-dialog>
         <div class="manage-header">
-          <el-button type="primary" @click="dialogVisible=true">
-            +新增
+          <el-button type="primary" @click="addNewUser()">
+            +新增 
           </el-button>
                   <el-table
                     :data="tableData"
@@ -67,7 +63,14 @@
                       :label="val"
                       width="180">
                     </el-table-column>
-                  
+                    <el-table-column
+                    prop="key"
+                    label="操作处理">
+                    <template scope="scope">
+                      <el-button type="info" size="mini" @click="handleEdit(scope.row)">编辑</el-button>
+                      <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+                    </template>
+                    </el-table-column>
                   </el-table>
         </div>
   </div>
@@ -75,10 +78,11 @@
 
 <script>
 
-import {getothersuserData} from "@/api/index"
+import {getothersuserData,addothersuserData,editothersuserData} from "@/api/index"
 export default {
 data(){
     return{
+      modalType:0,//0:新增 1：编辑
       tableData:[],
       tableLabel:{id:"员工号",name:"姓名",date:"注册日期",gender:"性别",phonenumber:"电话号码",email:"邮箱",grade:"级别",password:"密码"},
        dialogVisible: false,
@@ -107,19 +111,32 @@ data(){
     }
    },
        methods: {
+        addNewUser(){
+          this.modalType=0
+          this.dialogVisible=true
+        },
       handleClose(done) { 
         this.$confirm('确认关闭？')
           .then(_ => {
             done();
           })
           .catch(_ => {});
-      },submit(){
-        this.$refs.form.validate((valid)=>{
+      },
+      submit(){
+        this.$refs.form.validate((valid)=>{   
+          console.log(this.form,'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')          
           if(valid){
             //关闭对话框
-            // console.log(this.form,'@@@@@kkkkkkkkk')
+            if(this.modalType===0){
+             console.log("添加管理员")
+              addothersuserData(this.form).then(()=>{this.getUserList()})
+              
+            }else{
+              editothersuserData(this.form).then(()=>{this.getUserList()})
+            }
+              
               this.$refs.form.resetFields()
-              this.dialogVisible=false
+               this.dialogVisible=false
               
           }
         })
@@ -127,18 +144,35 @@ data(){
       //弹窗关闭的时候
       handleClose(){
           this.$refs.form.resetFields()
+          this.dialogVisible=false
           
       },cancle(){
         this.handleClose()
-      }
-    },
-    mounted(){
-        getothersuserData().then(({data})=>{
+      },
+      handleEdit(data){
+              this.modalType=1
+              this.dialogVisible=true
+              this.form=JSON.parse(JSON.stringify(row))
+
+      },handleDelete(data){
+
+
+      },
+      getUserList(){
+                   getothersuserData().then(({data})=>{
           console.log(data)
           this.tableData=data.data
           console.log(data.data)
         })
-    }
+      }
+
+
+    },
+    mounted(){
+       this.getUserList()
+       
+    },
+   
 }
 </script>
 
