@@ -7,9 +7,9 @@ export const getData = () => {
         return http.get('/home/getData')
     }
     //一般管理员数据获取-获取列表数据
-export const getothersuserData = (parmas) => {
+export const getothersuserData = (params) => {
         console.log("连接接口获取数据中！！！！", "getothersuserData")
-        return http.get('/user/othersmanagement/getothersuserData')
+        return http.get('/user/othersmanagement/getothersuserData', params)
     }
     //一般管理员数据获取-添加一般管理员
 export const addothersuserData = (data) => {
@@ -24,6 +24,16 @@ export const editothersuserData = (data) => {
     }
     //一般管理员数据获取-查找用户
 export const queryothersuserData = (data) => {
-    console.log("连接接口获取数据中！！！！", "queryothersuserData", data)
-    return http.post('/user/othersmanagement/queryothersuserData', data)
+        console.log("连接接口获取数据中！！！！", "queryothersuserData", data)
+        return http.post('/user/othersmanagement/queryothersuserData', data)
+    }
+    //一般管理员数据获取-删除一般管理员
+export const deleteothersuserData = (data) => {
+        console.log("连接接口获取数据中！！！！", "deleteothersuserData", data)
+        return http.post('/user/othersmanagement/deleteothersuserData', data)
+    }
+    //用户登录许可接口 
+export const getuserpermission = (data) => {
+    console.log("连接接口获取数据中！！！！", "getuserpermission", data)
+    return http.post('/permission/getMenu', data)
 }

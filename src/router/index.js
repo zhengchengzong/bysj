@@ -27,7 +27,7 @@ import ModifyUsers from "../views/Users/ModifyUsers/index.vue"
 import MyselfManagement from "../views/Users/MyselfManagement/index.vue"
 import OthersManagement from "../views/Users/OthersManagement/index.vue"
 import QueryUsers from "../views/Users/QueryUsers/index.vue"
-
+import Cookies from "js-cookie"
 
 
 
@@ -36,6 +36,7 @@ const router = new VueRouter({
     routes: [{
             path: '/',
             component: Layout,
+
             children: [{
                 path: '/',
                 name: 'home',
@@ -69,12 +70,26 @@ const router = new VueRouter({
                         path: 'othersmanagement',
                         name: 'othersmanagement',
                         component: OthersManagement,
-                        // children: [
-                        //     { path: 'addusers', name: 'addusers', component: AddUsers },
-                        //     { path: 'deleteusers', name: 'deleteusers', component: DeleteUsers },
-                        //     { path: 'modifyusers', name: 'modifyusers', component: ModifyUsers },
-                        //     { path: 'queryusers', name: 'queryusers', component: QueryUsers }
-                        // ]
+                        beforeEnter: (to, from, next) => {
+                                // ...
+                                console.log("前置路由守卫", to, from)
+
+                                if (JSON.parse(localStorage.getItem("grade")) === "超级管理员") {
+                                    console.log("匹配成功")
+                                    next()
+                                } else {
+                                    alert('无权访问')
+
+                                }
+
+
+                            }
+                            // children: [
+                            //     { path: 'addusers', name: 'addusers', component: AddUsers },
+                            //     { path: 'deleteusers', name: 'deleteusers', component: DeleteUsers },
+                            //     { path: 'modifyusers', name: 'modifyusers', component: ModifyUsers },
+                            //     { path: 'queryusers', name: 'queryusers', component: QueryUsers }
+                            // ]
                     }
                 ]
 
@@ -88,8 +103,27 @@ const router = new VueRouter({
         }
     ]
 })
+
+
 router.beforeEach((to, from, next) => {
-    console.log("@@@@@@", to, from)
-    next()
+    console.log("TO:", to, "FROM", from)
+    console.log("全局前置路由启动....")
+    const token = Cookies.get("token")
+        //token不存在当前用户未登入，要跳转到登入界面
+    if (!token && to.name !== 'login') {
+        console.log("全局前置路由启动:1....")
+
+        next({ name: 'login' })
+    } else if (token && to.name === 'login') {
+        console.log("全局前置路由启动:2....")
+
+        next({ name: 'home' })
+    } else {
+        console.log("全局前置路由启动:3....")
+
+        next()
+    }
+
 })
+
 export default router

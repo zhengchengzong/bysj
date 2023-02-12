@@ -13,7 +13,7 @@
         <span class="linestyle">|</span>
         <span>欢迎：XXX</span>
         <span class="linestyle">|</span>
-        <i class="iconfont icon-tuichu exit"></i>
+        <i class="iconfont icon-tuichu exit" @click="logout"></i>
       </div>
     </div>
     <!-- 内容区域 -->
@@ -24,6 +24,7 @@
 <script>
 import dayjs from 'dayjs'
 import { set } from 'vue'
+import Cookie from 'js-cookie'
 export default {
   props:['isCollapse'],
   data(){
@@ -34,6 +35,12 @@ export default {
   methods:{
       changemenu(){
         this.$emit("changeMenu")
+      },
+      logout(){
+        
+          Cookie.remove('token')
+          localStorage.clear("grade")
+          this.$router.push({ path: '/login' })
       }
 },created(){
   setInterval(()=>{

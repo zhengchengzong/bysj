@@ -19,14 +19,14 @@
 
                   <el-form-item label="性别" prop="gender">
                     <el-select v-model="form.gender" placeholder="请选择性别">
-                    <el-option label="男" value="male"></el-option>
-                    <el-option label="女" value="female"></el-option>
+                    <el-option label="男" value="男"></el-option>
+                    <el-option label="女" value="女"></el-option>
                   </el-select>
                   </el-form-item>
                   
 
                   <el-form-item label="注册日期" prop="date">                  
-                      <el-date-picker type="date" placeholder="选择日期" v-model="form.date" style="width: 204px;"></el-date-picker>                        
+                      <el-date-picker value-format="yyyy-MM-DD" type="date" placeholder="选择日期" v-model="form.date" style="width: 204px;"></el-date-picker>                        
                   </el-form-item>
 
 
@@ -48,11 +48,24 @@
                     <el-button type="primary" @click="submit">确 定</el-button>
                   </span>
         </el-dialog>
-        <div class="manage-header">
+        <div class="manage-header gonnengqu">
           <el-button type="primary" @click="addNewUser()">
             +新增 
-          </el-button>
-                  <el-table
+          </el-button> 
+          <!-- 搜索区域                -->
+          <el-form :model="userform" :inline="true">
+            
+               
+                   <el-form-item>
+                    <el-input placeholder="请输入姓名查找" v-model="userform.name"></el-input>
+                   </el-form-item>
+                   <el-form-item>
+                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                   </el-form-item>
+          </el-form>
+        </div>
+        <el-table
+                    height="820"
                     :data="tableData"
                     stripe
                     style="width: 100%">
@@ -72,18 +85,18 @@
                     </template>
                     </el-table-column>
                   </el-table>
-        </div>
   </div>
 </template>
 
 <script>
 
-import {getothersuserData,addothersuserData,editothersuserData} from "@/api/index"
+import {getothersuserData,addothersuserData,editothersuserData,deleteothersuserData} from "@/api/index"
 export default {
 data(){
     return{
+      userform:{name:''},
       modalType:0,//0:新增 1：编辑
-      tableData:[],
+      tableData:[],//一般管理员列表
       tableLabel:{id:"员工号",name:"姓名",date:"注册日期",gender:"性别",phonenumber:"电话号码",email:"邮箱",grade:"级别",password:"密码"},
        dialogVisible: false,
        form:{
@@ -98,10 +111,12 @@ data(){
        },
      rules:{id:[{ required: true, message: '请输入员工编号', trigger: 'blur' }],name: [
             { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' }
-          ],date: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-          ],email:[{ required: true, message: '请输入邮箱地址', trigger: 'blur' },{ type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }]
+            { min: 3, max: 100, message: '长度在 3 到 100个字符', trigger: 'blur' }
+          ],
+          date: [
+            {required: true, message: '请选择日期', trigger: 'change' }
+          ],
+          email:[{ required: true, message: '请输入邮箱地址', trigger: 'blur' },{ type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }]
           ,phonenumber:[ { required: true, message: "请输入手机号", trigger: "blur" },{ pattern:/^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/, message: "请输入合法手机号/电话号", trigger: "blur" }]
           ,password:[{required:true,message:"请输入登入密码",trigger:"blur"}]
           ,gender:[{required:true,message:"请选择性别",trigger:"blur"}]
@@ -111,6 +126,11 @@ data(){
     }
    },
        methods: {
+        //列表搜索条件
+        onSubmit(){
+                this.getUserList()
+        }
+        ,
         addNewUser(){
           this.modalType=0
           this.dialogVisible=true
@@ -150,21 +170,42 @@ data(){
         this.handleClose()
       },
       handleEdit(data){
+        // console.log("看看编辑时候当前行数据数据：",data)
               this.modalType=1
               this.dialogVisible=true
-              this.form=JSON.parse(JSON.stringify(row))
+              //对于当前数据进行深拷贝
+              this.form=JSON.parse(JSON.stringify(data))
 
       },handleDelete(data){
-
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(() => {
+                deleteothersuserData({id:data.id}).then(()=>{
+                    this.$message({                 
+                  type: 'success',
+                  message: '删除成功!'
+                });
+                this.getUserList();
+                })
+              
+              }).catch(() => {
+                this.$message({
+                  type: 'info',
+                  message: '已取消删除'
+                });          
+              });
 
       },
       getUserList(){
-                   getothersuserData().then(({data})=>{
+                   getothersuserData({params:{...this.userform}}).then(({data})=>{
           console.log(data)
           this.tableData=data.data
           console.log(data.data)
         })
-      }
+      },
+
 
 
     },
@@ -177,5 +218,14 @@ data(){
 </script>
 
 <style>
+.manage{
+  height:90%;
+  
+}
+.gonnengqu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 </style>

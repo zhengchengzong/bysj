@@ -3,7 +3,8 @@ const http = axios.create({
         //通用请求的地址前缀
         baseURL: '/api',
         //超时时间
-        timeout: 10000,
+        timeout: 10000
+
     })
     // Add a request interceptor,请求拦截器
 http.interceptors.request.use(function(config) {
