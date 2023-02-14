@@ -44,8 +44,12 @@ data(){
         if(data.code===20000){
           //将信息存入Cookie
           Cookie.set('token',data.data.token)
-          console.log(data.grade)
-          localStorage.setItem('grade',JSON.stringify(data.grade))
+          // console.log("看看看",JSON.stringify([data.grade,data.name]))
+          localStorage.setItem('grade',JSON.stringify([data.name,data.id,data.grade]))
+     
+
+
+
           
           
           this.$router.push({ path: '/' })

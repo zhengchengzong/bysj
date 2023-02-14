@@ -11,7 +11,7 @@
       <div class="header-right">
         <span>{{nowTime}}</span>
         <span class="linestyle">|</span>
-        <span>欢迎：XXX</span>
+        <span>欢迎：{{name}}</span>
         <span class="linestyle">|</span>
         <i class="iconfont icon-tuichu exit" @click="logout"></i>
       </div>
@@ -29,7 +29,8 @@ export default {
   props:['isCollapse'],
   data(){
     return{
-      nowTime:''
+      nowTime:'',
+      name:''
     }
   },
   methods:{
@@ -47,6 +48,11 @@ export default {
     this.nowTime=dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
   },1000)
     
+},
+mounted(){
+   let message=localStorage.getItem('grade')
+   this.name=JSON.parse(message)[0]
+  
 }
 }
 </script>
@@ -80,6 +86,6 @@ export default {
 .tesu1{
   position:relative;
   top: -8px;
-  left: -6px;
+  left: 0px;
 }
 </style>

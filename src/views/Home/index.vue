@@ -6,12 +6,12 @@
            <div class="user">
             <img src="@/assets/images/touxiang.png" alt="">
             <div class="userinfo">
-                <p class="name">Admin</p>
-                <p class="access">超级管理员</p>
+                <p class="name">{{name}}</p>
+                <p class="access">{{grade}}</p>
             </div>
            </div>
            <div class="login-info">
-            <p>工号: <span>112133</span></p>
+            <p>工号: <span>{{id}}</span></p>
            </div>
         </el-card>
         <el-card style="margin-top:20px;height:530px;">
@@ -100,6 +100,10 @@ import * as echarts from 'echarts';
 export default {
   data(){
     return {
+      name:'',
+      grade:'',
+      id:''
+      ,
       tableData:[],
       tableData2:[],
         countDate:{
@@ -116,6 +120,16 @@ export default {
        
     }
   },mounted(){
+
+
+          let message=localStorage.getItem('grade')
+          
+          this.grade=JSON.parse(message)[2]
+          this.name=JSON.parse(message)[0]
+          this.id=JSON.parse(message)[1]
+
+
+
          getData().then(({data})=>{
           this.tableData=data.data.tableData
           this.tableData2=data.data.tableData2

@@ -34,6 +34,11 @@ export const deleteothersuserData = (data) => {
     }
     //用户登录许可接口 
 export const getuserpermission = (data) => {
-    console.log("连接接口获取数据中！！！！", "getuserpermission", data)
-    return http.post('/permission/getMenu', data)
+        console.log("连接接口获取数据中！！！！", "getuserpermission", data)
+        return http.post('/permission/getMenu', data)
+    }
+    //获取本用户数据
+export const getmyinfo = (params) => {
+    console.log("连接接口获取数据中！！！！", 'getmyinfo', params)
+    return http.post('/myuser/getmyinfo', params)
 }

@@ -199,7 +199,7 @@ data(){
 
       },
       getUserList(){
-                   getothersuserData({params:{...this.userform}}).then(({data})=>{
+           getothersuserData({params:{...this.userform}}).then(({data})=>{
           console.log(data)
           this.tableData=data.data
           console.log(data.data)

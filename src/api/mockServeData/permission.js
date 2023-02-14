@@ -7,7 +7,10 @@ export default {
             // 判断账号和密码是否对应
         if (name === 'admin' && password === 'admin') {
             return {
+
+                name: 'admin',
                 grade: "超级管理员",
+                id: "001",
                 code: 20000,
                 data: {
                     menu: [{
@@ -57,6 +60,8 @@ export default {
             }
         } else if (name === 'xiaoxiao' && password === 'xiaoxiao') {
             return {
+                name: 'xiaoxiao',
+
                 grade: "一般管理员",
                 code: 20000,
                 data: {

@@ -57,7 +57,7 @@ collapse 是否水平折叠收起菜单-->
     </template>
     <el-menu-item-group>
       <el-menu-item index="/users/myselfmanagement">本用户管理</el-menu-item>
-      <el-menu-item index="/users/othersmanagement">一般用户管理</el-menu-item>
+      <el-menu-item index="/users/othersmanagement" :disabled='display'>一般用户管理</el-menu-item>
 
       <!-- <el-submenu index="/users/othersmanagement">
           <template slot="title">其它用户管理</template>
@@ -73,7 +73,23 @@ collapse 是否水平折叠收起菜单-->
 
 <script>
 export default {
-    props:['isCollapse']
+  data(){
+      return{
+        display:true,
+      
+      }
+  },
+    props:['isCollapse'],
+    mounted(){     
+      // console.log('KKKKKKKKKKKKKKKKKKK',localStorage.getItem('grade'))
+      let message=localStorage.getItem('grade')
+      if(JSON.parse(message)[2]==='超级管理员'){
+        this.display=false
+      }else{
+        this.display=true
+      }
+      
+    }
 }
 </script>
 

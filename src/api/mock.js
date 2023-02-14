@@ -2,6 +2,7 @@ import Mock from 'mockjs'
 import homeapi from './mockServeData/home'
 import othersuserapi from './mockServeData/Othersuser'
 import permission from './mockServeData/permission'
+import myuser from './mockServeData/myuser'
 
 
 
@@ -15,3 +16,6 @@ Mock.mock('/api/user/othersmanagement/queryothersuserData', "post", othersuserap
 Mock.mock('/api/user/othersmanagement/deleteothersuserData', "post", othersuserapi.deleteUser)
     //模拟权限登录
 Mock.mock(/api\/permission\/getMenu/, 'post', permission.getMenu)
+
+//模拟获取本用户数据
+Mock.mock('/api/myuser/getmyinfo', myuser.getmyinfo)
